@@ -73,8 +73,6 @@ function editSchedule(index) {
 
     let schedule = schedules[index];
     document.getElementById("class").value = schedule.class;
-    // let dateParts = schedule.date.split("-");
-    // let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
     document.getElementById("date").value = schedule.date;
     document.getElementById("time").value = schedule.time;
     editIndex = index;
@@ -102,8 +100,6 @@ function saveSchedule() {
         return;
     }
 
-    // let dateParts = date.split("-");
-    // let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
     let isDuplicate = schedules.some((schedule, index) => 
         schedule.date === date && 
         schedule.time === time && 
