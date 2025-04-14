@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>ADMIN DASHBOARD</h2>
+        <ul>
+            <li><a href="./index.html">Quản lý lịch</a></li>
+            <li><a href="./pages/adminPage/service.html">Quản lý dịch vụ</a></li>
+            <li><a href="./pages/admin/dashboard.html">Trang chủ</a></li>
+            <li><a href="./pages/auth/login.html">Đăng xuất</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <span>Thống kê tích hợp</span>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Tổng số lịch Gym</h3>
+                <p>0</p>
+            </div>
+            <div class="card">
+                <h3>Tổng số lịch Yoga</h3>
+                <p>0</p>
+            </div>
+            <div class="card">
+                <h3>Tổng số lịch Zumba</h3>
+                <p>0</p>
+            </div>
+        </div>
+
+        <!-- Biểu đồ -->
+        <div class="chart">
+            <canvas id="classChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="filter-section">
+            <h3>Bộ lọc</h3>
+            <div class="filter-inputs" id="filterInputs">
+                <div class="filter-input">
+                    <label>Lớp học</label>
+                    <select id="classSelect">
+                        <option value="" disabled selected>Chọn lớp học</option>
+                        <option value="gym">Gym</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="zumba">Zumba</option>
+                        <option value="full">Tất cả</option>
+                    </select>
+                </div>
+                <div class="filter-input">
+                    <label>Email</label>
+                    <input type="text" placeholder="Tìm theo email">
+                </div>
+                <div class="filter-input">
+                    <label>Ngày</label>
+                    <input type="date">
+                </div>
+            </div>
+            <button onclick="showMoreFilters()">Tìm kiếm</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lớp học</th>
+                        <th>Ngày tập</th>
+                        <th>Khung giờ</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Bảng -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal để chỉnh sửa lịch -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">×</span>
+            <h2 id="modalTitle">Sửa lịch</h2>
+            <div id="editScheduleForm">
+                <div class="filter-input">
+                    <label for="edit-class">Lớp học:</label>
+                    <select id="edit-class" required>
+                        <option value="Gym">Gym</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Zumba">Zumba</option>
+                    </select>
+                </div>
+                <div class="filter-input">
+                    <label for="edit-date">Ngày tập:</label>
+                    <input type="date" id="edit-date" required>
+                </div>
+                <div class="filter-input">
+                    <label for="edit-time">Khung giờ:</label>
+                    <select id="edit-time" required>
+                        <option value="">Chọn khung giờ</option>
+                        <option value="7h30-9h30">7h30-9h30</option>
+                        <option value="9h30-11h30">9h30-11h30</option>
+                        <option value="14h00-16h00">14h00-16h00</option>
+                        <option value="16h00-18h00">16h00-18h00</option>
+                        <option value="18h00-20h00">18h00-20h00</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button onclick="closeEditModal()" class="cancel">Hủy</button>
+                    <button onclick="saveEditedSchedule()" class="save">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

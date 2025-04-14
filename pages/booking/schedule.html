@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../assets/css/schedule.css">
+</head>
+<body>
+    <nav>
+        <p>GYM MANAGEMENT</p>
+        <ul class="desktop">
+            <li><a href="../admin/dashboard.html">Trang chủ</a></li>
+            <li><a href="./schedule.html">Lịch tập</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h3>Quản lý lịch tập</h3>
+        <button>Đặt lịch mới</button>
+    </header>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lớp học</th>
+                    <th>Ngày tập</th>
+                    <th>Khung giờ</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu trong -->
+            </tbody>
+        </table>
+        <div id="pagination"></div>
+    </section>
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2 id="modalTitle">Đặt lịch mới</h2>
+            <div id="scheduleForm">
+                <label for="class">Lớp học:</label>
+                <select id="class" required>
+                    <option value="">Chọn lớp học</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Yoga">Yoga</option>
+                    <option value="Zumba">Zumba</option>
+                </select><br>
+
+                <label for="date">Ngày tập:</label>
+                <input type="date" id="date" required placeholder="mm/dd/yyyy"><br>
+
+                <label for="time">Khung giờ:</label>
+                <select id="time" required>
+                    <option value="">Chọn khung giờ</option>
+                    <option value="7h30-9h30">7h30-9h30</option>
+                    <option value="9h30-11h30">9h30-11h30</option>
+                    <option value="14h00-16h00">14h00-16h00</option>
+                    <option value="16h00-18h00">16h00-18h00</option>
+                    <option value="18h00-20h00">18h00-20h00</option>
+                </select><br>
+                <div class="modal-buttons">
+                    <button onclick="closeModal()" class="cancel">Hủy</button>
+                    <button onclick="saveSchedule()" class="save">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/js/booking.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
+
+<!-- required DÙng cái này để cho nó bắt người dùng nhập thì mới dc gửi -->

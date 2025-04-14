@@ -1,0 +1,302 @@
+/* body {
+    margin: 0;
+    padding: 0;
+} */
+
+/* Navbar */
+nav {
+    background-color: #1F2937;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+nav ul.desktop {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul.desktop li {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+nav ul.desktop li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav ul.desktop li:hover {
+    color: #3498db;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    background-color: #fff;
+}
+
+header h3 {
+    font-size: 24px;
+}
+
+header button {
+    background-color: #3B82F6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header button:hover {
+    background-color: #357abd;
+}
+
+/* Section */
+section {
+    padding: 0px 30px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+}
+
+thead {
+    background-color: #e3e4e6;
+    color: #000000;
+}
+
+table th,
+table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+table tbody td {
+    color: #333;
+}
+
+/* tbody tr:hover {
+    background-color: #F1F5F9;
+} */
+
+tbody td:last-child {
+    text-align: center;
+}
+
+table tbody a {
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+table tbody a.edit {
+    color: #3B82F6;
+}
+
+table tbody a.delete {
+    color: #F87171;
+}
+
+table tbody a.edit:hover {
+    color: #357ABD;
+}
+
+table tbody a.delete:hover {
+    color: #F43F5E;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#pagination {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+#pagination button {
+    position: relative;
+    overflow: hidden;
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(90deg, #00ffe5 0%, #004bfa 100%);
+    color: white;
+    border: 0.15px solid black;
+    transition: all 0.35s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#pagination button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #00ffe5 100%, #004bfa 0%);
+    z-index: 0;
+    transition: width 0.35s ease;
+    opacity: 0.5;
+}
+
+#pagination button:hover::after {
+    width: 100%;
+}
+
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: none;
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    cursor: pointer;
+}
+
+#modalTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#scheduleForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+#scheduleForm input,
+#scheduleForm select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#scheduleForm select {
+    height: 36px;
+    appearance: menulist;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal-buttons .cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.modal-buttons .cancel:hover {
+    background-color: #b3b3b3;
+}
+
+.modal-buttons .save {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.modal-buttons .save:hover {
+    background-color: #357abd;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul.desktop {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+}

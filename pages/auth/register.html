@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../assets/./css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Đăng ký tài khoản</h1>
+        <div class="input-group">
+            <label for="name">Họ và tên</label>
+            <input type="text" name="name" id="name">
+            <span class="err-sigup" id="errName"></span>
+        </div>
+        <div class="input-group">
+            <label for="mail">Email</label>
+            <input type="email" name="mail" id="mail">
+            <span class="err-sigup" id="errMail"></span>
+        </div>
+        <div class="input-group">
+            <label for="pass">Mật khẩu</label>
+            <input type="password" name="pass" id="pass">
+            <span class="err-sigup" id="errPass"></span>
+        </div>
+        <div class="input-group">
+            <label for="checkpass">Xác nhận mật khẩu</label>
+            <input type="password" name="checkpass" id="checkpass">
+            <span class="err-sigup" id="errPassCheck"></span>
+        </div>
+        <button class="btn-login" onclick="fValid()">Đăng ký</button>
+        <p>Đã có tài khoản? <a href="../auth/login.html" class="sign-in">Đăng nhập ngay</a></p>
+    </div>
+    <script src="../../assets/js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

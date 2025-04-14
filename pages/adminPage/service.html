@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../assets/css/service.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="../../index.html">Quản lý lịch</a></li>
+            <li><a href="../adminPage/service.html">Quản lý dịch vụ</a></li>
+            <li><a href="../admin/dashboard.html">Trang chủ</a></li>
+            <li><a href="../auth/login.html">Đăng xuất</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="header">
+            <span>Quản lý dịch vụ</span>
+            <button onclick="openModal()">Thêm dịch vụ mới</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên dịch vụ</th>
+                        <th>Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Bảng dịch vụ -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal thêm dịch vụ -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Thêm dịch vụ mới</h3>
+            <form id="serviceForm" onsubmit="saveService(event)">
+                <label for="name">Tên dịch vụ:</label>
+                <input type="text" id="name" required>
+
+                <label for="description">Mô tả:</label>
+                <textarea id="description" required></textarea>
+
+                <label for="image">URL hình ảnh:</label>
+                <input type="text" id="image" required>
+
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-btn" onclick="closeModal()">Hủy</button>
+                    <button type="submit" class="save-btn">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../assets/js/service.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

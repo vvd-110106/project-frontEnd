@@ -1,0 +1,385 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f0f4f8;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #1a2a44;
+    padding: 20px;
+    color: #fff;
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #b0b7c3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+    color: #fff;
+}
+
+.sidebar ul li:last-child a {
+    color: #ff4d4d;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #d1e0ff;
+    border-radius: 8px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-right: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.card:last-child {
+    margin-right: 0;
+}
+
+.card h3 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.chart {
+    height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.filter-input {
+    flex: 1;
+    min-width: 150px;
+    max-width: 500px;
+}
+
+.filter-input label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.filter-input input,
+.filter-input select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.filter-input input:focus,
+.filter-input select:focus {
+    border-color: #aaa;
+    outline: none;
+}
+
+.filter-section button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.filter-section button:hover {
+    background-color: #357abd;
+}
+
+.table-container {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f7f9fc;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody {
+    background-color: #fff;
+}
+
+tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+td {
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.edit {
+    color: blue;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.delete {
+    color: red;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: 100%;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .card {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .card:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .main-content {
+        margin: 10px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .filter-input {
+        min-width: 100%;
+    }
+}
+
+/* CSS cho modal chỉnh sửa lịch */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: none;
+    width: 30%; /* Chiều rộng modal */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    cursor: pointer;
+}
+
+#modalTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#editScheduleForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Khoảng cách giữa các trường */
+}
+
+#editScheduleForm label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#editScheduleForm input,
+#editScheduleForm select {
+    width: 100%;
+    padding: 10px 15px; /* Bỏ padding bên phải vì không cần chừa chỗ cho biểu tượng */
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#editScheduleForm input:focus,
+#editScheduleForm select:focus {
+    border-color: #aaa;
+    outline: none;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal-buttons .cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.modal-buttons .cancel:hover {
+    background-color: #b3b3b3;
+}
+
+.modal-buttons .save {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.modal-buttons .save:hover {
+    background-color: #357abd;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%;
+    }
+}
+
+/* Biểu đồ */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 2 / 1;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+}

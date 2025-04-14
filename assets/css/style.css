@@ -1,0 +1,108 @@
+/*                                                              LOGIN                                               */
+/* LOGIN */
+.login-container {
+    width: 350px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-group span {
+    color: rgb(241, 59, 59);
+    font-size: 15px;
+}
+a {
+    text-decoration: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
+
+.login-container p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.sign-in {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.sign-in:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .login-container {
+        width: 90%;
+        padding: 15px;
+    }
+    .input-group input {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .btn-login {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .login-container {
+        width: 350px; /* Tablet: 350px */
+    }
+}
+
+@media (min-width: 1025px) {
+    .login-container {
+        width: 400px; /* Desktop: 400px */
+    }
+}
+/*                                                           Sign up                                                      */
