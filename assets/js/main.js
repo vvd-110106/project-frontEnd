@@ -1,8 +1,7 @@
 let schedules = JSON.parse(localStorage.getItem("schedules")) || [];
 let editIndex = -1;
-let filteredData = schedules; // Lưu dữ liệu đã lọc để tái sử dụng
-
-// Hàm cập nhật số liệu trên các thẻ (Gym, Yoga, Zumba)
+let filteredData = schedules;
+// Hàm cập nhật số liệu trên các thẻ
 function updateCards(data) {
     const gymCount = data.filter(item => item.class.toLowerCase() === "gym").length;
     const yogaCount = data.filter(item => item.class.toLowerCase() === "yoga").length;
@@ -35,24 +34,41 @@ function renderTable(data) {
 }
 
 // Hàm lọc dữ liệu dựa trên bộ lọc
+function filterByClass(data, selectedClass) {
+    if (selectedClass === "full") return data;
+    return data.filter(item => item.class.toLowerCase() === selectedClass);
+}
+
+function filterByEmail(data, email) {
+    if (!email) return data;
+    return data.filter(item => item.email.toLowerCase().includes(email.toLowerCase()));
+}
+
+function filterByDate(data, date) {
+    if (!date) return data;
+    return data.filter(item => item.date === date);
+}
+
+// Lọc dữ liệu
 function showMoreFilters() {
     const classSelect = document.getElementById("classSelect").value;
     const emailInput = document.querySelector('input[placeholder="Tìm theo email"]').value.toLowerCase();
     const dateInput = document.querySelector('input[type="date"]').value;
 
-    filteredData = schedules.filter(item => {
-        const matchesClass = classSelect === "full" || item.class.toLowerCase() === classSelect;
-        const matchesEmail = emailInput ? item.email.toLowerCase().includes(emailInput) : true;
-        let formattedDateInput = "";
-        if (dateInput) {
-            const dateParts = dateInput.split("-"); // Tách YYYY-MM-DD
-            formattedDateInput = `${dateParts[0]}-${dateParts[1]}-${dateParts[2]}`; // Thành YYYY-DD-MM
-        }
-        const matchesDate = dateInput ? item.date === formattedDateInput : true;
+    // Bắt đầu với toàn bộ dữ liệu
+    let filtered = schedules;
+    if (classSelect && classSelect !== "full") {
+        filtered = filtered.filter(item => item.class.toLowerCase() === classSelect); // Lọc
+    }
+    if (emailInput) {
+        filtered = filtered.filter(item => item.email.toLowerCase().includes(emailInput));
+    }
+    if (dateInput) {
+        filtered = filtered.filter(item => item.date === dateInput);
+    }
 
-        return matchesClass && matchesEmail && matchesDate;
-    });
-
+    // Cập nhật bảng, thẻ và biểu đồ
+    filteredData = filtered;
     renderTable(filteredData);
     updateCards(filteredData);
     renderChart(filteredData);
@@ -70,21 +86,8 @@ function deleteSchedule(index) {
         if (result.isConfirmed) {
             schedules.splice(index, 1);
             localStorage.setItem("schedules", JSON.stringify(schedules));
-            // Cập nhật filteredData để loại bỏ lịch vừa xóa
-            filteredData = schedules.filter(item => {
-                const classSelect = document.getElementById("classSelect").value;
-                const emailInput = document.querySelector('input[placeholder="Tìm theo email"]').value.toLowerCase();
-                const dateInput = document.querySelector('input[type="date"]').value;
-
-                const matchesClass = classSelect === "full" || item.class.toLowerCase() === classSelect;
-                const matchesEmail = emailInput ? item.email.toLowerCase().includes(emailInput) : true;
-                const matchesDate = dateInput ? item.date === dateInput : true;
-
-                return matchesClass && matchesEmail && matchesDate;
-            });
-            renderTable(filteredData);
-            updateCards(filteredData);
-            renderChart(filteredData);
+            showMoreFilters();
+            
             Swal.fire('Đã xóa!', 'Lịch tập đã được xóa.', 'success');
         }
     });
@@ -102,8 +105,6 @@ function editSchedule(index) {
 
     // Lưu chỉ số của lịch đang chỉnh sửa
     editIndex = index;
-
-    // Hiển thị modal
     modal.style.display = "block";
 }
 
@@ -130,29 +131,15 @@ function saveEditedSchedule() {
         return;
     }
 
-    // Cập nhật thông tin lịch
     schedules[editIndex].class = className;
     schedules[editIndex].date = date;
     schedules[editIndex].time = time;
 
-
-    // Lưu vào localStorage và cập nhật bảng
+    // Lưu vào localStorage
     localStorage.setItem("schedules", JSON.stringify(schedules));
-    // Cập nhật filteredData để phản ánh lịch vừa chỉnh sửa
-    filteredData = schedules.filter(item => {
-        const classSelect = document.getElementById("classSelect").value;
-        const emailInput = document.querySelector('input[placeholder="Tìm theo email"]').value.toLowerCase();
-        const dateInput = document.querySelector('input[type="date"]').value;
-
-        const matchesClass = classSelect === "full" || item.class.toLowerCase() === classSelect;
-        const matchesEmail = emailInput ? item.email.toLowerCase().includes(emailInput) : true;
-        const matchesDate = dateInput ? item.date === dateInput : true;
-
-        return matchesClass && matchesEmail && matchesDate;
-    });
-    renderTable(filteredData);
-    updateCards(filteredData);
-    renderChart(filteredData);
+    showMoreFilters();
+    
+    // Đóng modal và thông báo
     closeEditModal();
     Swal.fire('Đã lưu!', 'Lịch tập đã được cập nhật.', 'success');
 }
@@ -167,8 +154,7 @@ if (schedules.length === 0) {
     filteredData = schedules;
 }
 
-// Bieeurr đồ
-
+// Biểu đồ
 let classChart;
 
 function renderChart(data) {
@@ -204,7 +190,7 @@ function renderChart(data) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Cho phép CSS quyết định tỉ lệ
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     display: true,
@@ -223,7 +209,7 @@ function renderChart(data) {
     });
 }
 
-
+// Khởi tạo giao diện
 updateCards(filteredData);
 renderTable(filteredData);
-renderChart(filteredData); 
+renderChart(filteredData);
