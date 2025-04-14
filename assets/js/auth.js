@@ -153,8 +153,29 @@ function fValidLogin() {
 
 // Xử lý đăng xuất
 function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
+    Swal.fire({
+        title: "Bạn có chắc chắn muốn đăng xuất?",
+        text: "Bạn sẽ cần đăng nhập lại để tiếp tục sử dụng!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Có, đăng xuất!",
+        cancelButtonText: "Hủy"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem("loggedInUser");
+            Swal.fire({
+                title: "Đăng xuất thành công!",
+                text: "Bạn đã đăng xuất khỏi hệ thống.",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "../auth/login.html";
+            });
+        }
+    });
 }
 
 // Hàm cập nhật menu
@@ -177,7 +198,7 @@ function updateMenu() {
     // Kiểm tra trạng thái đăng nhập để thay đổi mục "Đăng nhập"
     if (loggedInUser) {
         if (loginItem) {
-            loginItem.innerHTML = '<a href="../auth/login.html" onclick="logout()">Đăng xuất</a>';
+            loginItem.innerHTML = '<a href="javascript:void(0);" onclick="logout()">Đăng xuất</a>';
         }
     } else {
         if (loginItem) {
