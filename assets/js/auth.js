@@ -1,12 +1,32 @@
 // Đăng ký
 // localStorage.clear();
 function fValid() {
-    let fullName = document.getElementById("name").value;
+    let fullName = document.getElementById("name").value.trim();
     if (fullName === "") {
         document.getElementById("errName").innerHTML = "Họ và tên không được để trống.";
         document.getElementById("name").focus();
         return;
+    } /* else if (fullName.length < 2) {
+        document.getElementById("errName").innerHTML = "Họ và tên phải có ít nhất 2 ký tự.";
+        document.getElementById("name").focus();
+        return;
     } else {
+        let isValidName = true;
+        for (let i = 0; i < fullName.length; i++) {
+            let charCode = fullName.charCodeAt(i);
+            if (!(charCode === 32 || (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))) {
+                isValidName = false;
+                break;
+            }
+        }
+        if (!isValidName) {
+            document.getElementById("errName").innerHTML = "Họ và tên chỉ được chứa chữ cái và khoảng trắng.";
+            document.getElementById("name").focus();
+            return;
+        } else {
+            document.getElementById("errName").innerHTML = "";
+        }
+    } */ else {
         document.getElementById("errName").innerHTML = "";
     }
 
@@ -19,6 +39,14 @@ function fValid() {
         document.getElementById("errMail").innerHTML = "Mail không hợp lệ.";
         document.getElementById("mail").focus();
         return;
+    // } else if (mail.indexOf("@") === -1 || mail.indexOf(".") === -1) {
+    //     document.getElementById("errMail").innerHTML = "Mail không hợp lệ.";
+    //     document.getElementById("mail").focus();
+    //     return;
+    // } else if (mail.indexOf("@") < 1 || mail.indexOf(".") < mail.indexOf("@") + 2) {
+    //     document.getElementById("errMail").innerHTML = "Mail không hợp lệ.";
+    //     document.getElementById("mail").focus();
+    //     return;
     } else {
         document.getElementById("errMail").innerHTML = "";
     }
@@ -32,6 +60,22 @@ function fValid() {
         document.getElementById("errPass").innerHTML = "Mật khẩu tối thiểu phải 8 kí tự";
         document.getElementById("pass").focus();
         return;
+        // } else if (!/[A-Z]/.test(inputPass)) {
+        //     document.getElementById("errPass").innerHTML = "Mật khẩu phải chứa ít nhất 1 chữ in hoa.";
+        //     document.getElementById("pass").focus();
+        //     return;
+        // } else if (!/[a-z]/.test(inputPass)) {
+        //     document.getElementById("errPass").innerHTML = "Mật khẩu phải chứa ít nhất 1 chữ thường.";
+        //     document.getElementById("pass").focus();
+        //     return;
+        // } else if (!/\d/.test(inputPass)) {
+        //     document.getElementById("errPass").innerHTML = "Mật khẩu phải chứa ít nhất 1 số.";
+        //     document.getElementById("pass").focus();
+        //     return;
+        // } else if (!/[@$!%*?&]/.test(inputPass)) {
+        //     document.getElementById("errPass").innerHTML = "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt (@$!%*?&).";
+        //     document.getElementById("pass").focus();
+        //     return;
     } else {
         document.getElementById("errPass").innerHTML = "";
     }
@@ -153,8 +197,29 @@ function fValidLogin() {
 
 // Xử lý đăng xuất
 function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
+    Swal.fire({
+        title: "Bạn có chắc chắn muốn đăng xuất?",
+        text: "Bạn sẽ cần đăng nhập lại để tiếp tục sử dụng!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Có, đăng xuất!",
+        cancelButtonText: "Hủy"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem("loggedInUser");
+            Swal.fire({
+                title: "Đăng xuất thành công!",
+                text: "Bạn đã đăng xuất khỏi hệ thống.",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "../auth/login.html";
+            });
+        }
+    });
 }
 
 // Hàm cập nhật menu
@@ -177,7 +242,7 @@ function updateMenu() {
     // Kiểm tra trạng thái đăng nhập để thay đổi mục "Đăng nhập"
     if (loggedInUser) {
         if (loginItem) {
-            loginItem.innerHTML = '<a href="../auth/login.html" onclick="logout()">Đăng xuất</a>';
+            loginItem.innerHTML = '<a href="javascript:void(0);" onclick="logout()">Đăng xuất</a>';
         }
     } else {
         if (loginItem) {

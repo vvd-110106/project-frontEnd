@@ -25,16 +25,19 @@ function displaySchedules() {
     let end = start + limit;
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-    let scheduleData = schedules.filter(schedule => schedule.email === loggedInUser.email);
-    // Từ mảng schedules, lọc ra toàn bộ đối tượng schedule
-    // có mail trùng với mail của user đang đăng nhập 
-    // lưu vào 1 biến scheduleData
-    // Xong gán scheduleData = pageData
-    let pageData = scheduleData.slice(start, end)
+    // let scheduleData = schedules.filter(schedule => schedule.email === loggedInUser.email);
+    // // Từ mảng schedules, lọc ra toàn bộ đối tượng schedule
+    // // có mail trùng với mail của user đang đăng nhập 
+    // // lưu vào 1 biến scheduleData
+    // // Xong gán scheduleData = pageData
+    // let pageData = scheduleData.slice(start, end)
     
-    // let pageData = schedules.slice(start, end);
+    let pageData = schedules.slice(start, end);
     for (let i = 0; i < pageData.length; i++) {
         let schedule = pageData[i];
+        // pageData.forEach((schedule, i) => { let index = start + i
+
+        // }
         let index = start + i;
         html += `<tr>
             <td>${schedule.class}</td>
@@ -73,8 +76,8 @@ function editSchedule(index) {
 
     let schedule = schedules[index];
     document.getElementById("class").value = schedule.class;
-    // let dateParts = schedule.date.split("-");
-    // let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+    // let dateParts = schedule.date.split("-"); // ["2025", "01", "27"]
+    // let formattedDate = dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
     document.getElementById("date").value = schedule.date;
     document.getElementById("time").value = schedule.time;
     editIndex = index;
@@ -101,9 +104,8 @@ function saveSchedule() {
         });
         return;
     }
-
-    // let dateParts = date.split("-");
-    // let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+    // let dateParts = schedule.date.split("-"); // ["2025", "01", "27"]
+    // let formattedDate = dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
     let isDuplicate = schedules.some((schedule, index) => 
         schedule.date === date && 
         schedule.time === time && 
